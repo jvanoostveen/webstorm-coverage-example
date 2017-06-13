@@ -3,9 +3,55 @@
     "@types/chai": "4.0.0",
     "@types/mocha": "2.2.41",
     "chai": "4.0.2",
+    "cross-env": "5.0.1",
     "istanbul": "1.1.0-alpha.1",
     "mocha": "3.4.2",
+    "nyc": "11.0.2",
     "ts-node": "3.0.6",
     "typescript": "2.1.6"
+  },
+  "scripts": {
+    "coverage": "cross-env TS_NODE_FAST=true nyc --check-coverage -- mocha --compilers ts:ts-node/register --reporter dot --recursive"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    "reporter": [
+      "lcov",
+      "html",
+      "text-summary"
+    ],
+    "cache": true,
+    "temp-directory": "./build/nyc/cache",
+    "all": true,
+    "check-coverage": false,
+    "report-dir": "./build/coverage",
+    "es-module": false,
+    "lines": 100,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100,
+    "watermarks": {
+      "lines": [
+        75,
+        100
+      ],
+      "functions": [
+        75,
+        100
+      ],
+      "branches": [
+        75,
+        100
+      ],
+      "statements": [
+        75,
+        100
+      ]
+    }
   }
 }
